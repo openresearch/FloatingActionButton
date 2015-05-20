@@ -693,7 +693,7 @@ public class FloatingActionMenu extends ViewGroup {
                             }
                         }
                     }, delay);
-                    delay += mAnimationDelayPerItem;
+                    delay += animate ? mAnimationDelayPerItem : 0;
                 }
             }
 
