@@ -96,6 +96,9 @@ public class FloatingActionMenu extends ViewGroup {
 
     private int mLabelsPosition;
 
+    private OnClickListener mOnOpenMenuButtonClickListener;
+    private boolean mAnimateOnCloseIfActiveMenuButtonClickListener = true;
+
     public interface OnMenuToggleListener {
         void onMenuToggle(boolean opened);
     }
@@ -229,10 +232,16 @@ public class FloatingActionMenu extends ViewGroup {
         mMenuButton.setLabelText(mMenuButtonLabelText);
         mMenuButton.updateBackground();
 
+
         mMenuButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggle(mIsAnimated);
+                if (mOnOpenMenuButtonClickListener != null && isOpened()) {
+                    toggle(mAnimateOnCloseIfActiveMenuButtonClickListener);
+                    mOnOpenMenuButtonClickListener.onClick(v);
+                } else {
+                    toggle(mIsAnimated);
+                }
             }
         });
 
@@ -860,5 +869,13 @@ public class FloatingActionMenu extends ViewGroup {
         removeView(fab.getLabelView());
         removeView(fab);
         mButtonsCount--;
+    }
+
+    public void setOnOpenMenuButtonClickListener(OnClickListener listener, boolean animateOnClose) {
+        mOnOpenMenuButtonClickListener = listener;
+        mAnimateOnCloseIfActiveMenuButtonClickListener = animateOnClose;
+        if (mOnOpenMenuButtonClickListener == null) {
+            mAnimateOnCloseIfActiveMenuButtonClickListener = true;
+        }
     }
 }
