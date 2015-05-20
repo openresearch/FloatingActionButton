@@ -149,6 +149,7 @@ public class FloatingActionMenu extends ViewGroup {
         if (mIcon == null) {
             mIcon = getResources().getDrawable(R.drawable.fab_add);
         }
+        mIconAnimated = attr.getBoolean(R.styleable.FloatingActionMenu_menu_menuButton_animate, true);
         mMenuButtonLabelText = attr.getString(R.styleable.FloatingActionMenu_menu_button_label);
         mLabelsSingleLine = attr.getBoolean(R.styleable.FloatingActionMenu_menu_labels_singleLine, false);
         mLabelsEllipsize = attr.getInt(R.styleable.FloatingActionMenu_menu_labels_ellipsize, 0);
