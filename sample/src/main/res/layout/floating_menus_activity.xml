@@ -47,7 +47,8 @@
         fab:menu_shadowColor="#444"
         fab:menu_colorNormal="#FFB805"
         fab:menu_colorPressed="#F2AB00"
-        fab:menu_colorRipple="#D99200">
+        fab:menu_colorRipple="#D99200"
+        fab:menu_initalButtonsOffset="20dp">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab12"
@@ -91,7 +92,8 @@
         fab:menu_colorPressed="#2E7D32"
         fab:menu_colorRipple="#1B5E20"
         fab:menu_labels_maxLines="2"
-        fab:menu_labels_ellipsize="end">
+        fab:menu_labels_ellipsize="end"
+        fab:menu_initalButtonsOffset="20dp">
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
@@ -129,7 +131,8 @@
         fab:menu_fab_size="mini"
         fab:menu_colorNormal="#1565C0"
         fab:menu_colorPressed="#2272CD"
-        fab:menu_colorRipple="#62B2FF">
+        fab:menu_colorRipple="#62B2FF"
+        fab:menu_initalButtonsOffset="20dp">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab14"
@@ -184,7 +187,8 @@
         fab:menu_labels_ellipsize="end"
         fab:menu_labels_singleLine="true"
         fab:menu_fab_size="mini"
-        fab:menu_openDirection="down">
+        fab:menu_openDirection="down"
+        fab:menu_initalButtonsOffset="20dp">
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
@@ -220,7 +224,8 @@
         android:paddingLeft="10dp"
         fab:menu_labels_ellipsize="end"
         fab:menu_labels_singleLine="true"
-        fab:menu_backgroundColor="#ccffffff">
+        fab:menu_backgroundColor="#ccffffff"
+        fab:menu_initalButtonsOffset="20dp">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab1"
@@ -259,7 +264,8 @@
         fab:menu_labels_ellipsize="end"
         fab:menu_labels_singleLine="true"
         fab:menu_backgroundColor="#ccffffff"
-        fab:menu_labels_position="right">
+        fab:menu_labels_position="right"
+        fab:menu_initalButtonsOffset="20dp">
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
