@@ -50,6 +50,7 @@
             <enum name="right" value="1" />
         </attr>
         <attr name="menu_icon" format="reference" />
+        <attr name="menu_menuButton_animate" format="boolean"/>
         <attr name="menu_button_label" format="string"/>
         <attr name="menu_animationDelayPerItem" format="integer" />
         <attr name="menu_buttonToggleAnimation" format="reference" />
