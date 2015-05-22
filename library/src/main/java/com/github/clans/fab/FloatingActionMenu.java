@@ -921,6 +921,13 @@ public class FloatingActionMenu extends ViewGroup {
         return mMenuColorRipple;
     }
 
+    public void setMenuButtonLabelText(String labelText)
+    {
+        mMenuButtonLabelText = labelText;
+        mMenuButton.setLabelText(labelText);
+        createLabels();
+    }
+
     public void addMenuButton(FloatingActionButton fab) {
         addView(fab, mButtonsCount - 2);
         mButtonsCount++;
