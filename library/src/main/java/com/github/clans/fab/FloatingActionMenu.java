@@ -22,7 +22,6 @@ import android.view.animation.AnticipateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class FloatingActionMenu extends ViewGroup {
 
@@ -42,6 +41,7 @@ public class FloatingActionMenu extends ViewGroup {
     private AnimatorSet mIconToggleSet;
 
     private int mButtonSpacing = Util.dpToPx(getContext(), 0f);
+    private int mInitialButtonsOffset = Util.dpToPx(getContext(), 0f);
     private FloatingActionButton mMenuButton;
     private int mMaxButtonWidth;
     private int mLabelsMargin = Util.dpToPx(getContext(), 0f);
@@ -117,6 +117,7 @@ public class FloatingActionMenu extends ViewGroup {
     private void init(Context context, AttributeSet attrs) {
         TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.FloatingActionMenu, 0, 0);
         mButtonSpacing = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_buttonSpacing, mButtonSpacing);
+        mInitialButtonsOffset = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_initalButtonsOffset, mInitialButtonsOffset);
         mLabelsMargin = attr.getDimensionPixelSize(R.styleable.FloatingActionMenu_menu_labels_margin, mLabelsMargin);
         mLabelsPosition = attr.getInt(R.styleable.FloatingActionMenu_menu_labels_position, LABELS_POSITION_LEFT);
         mLabelsShowAnimation = attr.getResourceId(R.styleable.FloatingActionMenu_menu_labels_showAnimation,
@@ -317,7 +318,7 @@ public class FloatingActionMenu extends ViewGroup {
 
         width = Math.max(mMaxButtonWidth, maxLabelWidth + mLabelsMargin) + getPaddingLeft() + getPaddingRight();
 
-        height += mButtonSpacing * (mButtonsCount - 1) + getPaddingTop() + getPaddingBottom();
+        height += mInitialButtonsOffset + mButtonSpacing * (mButtonsCount - 1) + getPaddingTop() + getPaddingBottom();
         height = adjustForOvershoot(height);
 
         if (getLayoutParams().width == LayoutParams.MATCH_PARENT) {
@@ -353,8 +354,8 @@ public class FloatingActionMenu extends ViewGroup {
                 imageTop + mImageToggle.getMeasuredHeight());
 
         int nextY = openUp
-                ? menuButtonTop - mButtonSpacing
-                : menuButtonTop + mMenuButton.getMeasuredHeight() + mButtonSpacing;
+                ? menuButtonTop - mButtonSpacing - mInitialButtonsOffset
+                : menuButtonTop + mMenuButton.getMeasuredHeight() + mButtonSpacing + mInitialButtonsOffset;
 
         for (int i = mButtonsCount - 1; i >= 0; i--) {
             View child = getChildAt(i);
