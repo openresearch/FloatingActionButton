@@ -652,7 +652,7 @@ public class FloatingActionMenu extends ViewGroup {
             for (int i = getChildCount() - 1; i >= 0; i--) {
                 View child = getChildAt(i);
                 if (child instanceof FloatingActionButton
-                        && child != mMenuButton && child.getVisibility() != GONE) {
+                        && child.getVisibility() != GONE) {
                     counter++;
 
                     final FloatingActionButton fab = (FloatingActionButton) child;
@@ -661,7 +661,11 @@ public class FloatingActionMenu extends ViewGroup {
                         public void run() {
                             if (isOpened()) return;
 
-                            fab.show(animate);
+                            // menu button is always shown
+                            if (fab != mMenuButton) {
+                                fab.show(animate);
+                            }
+
                             Label label = (Label) fab.getTag(R.id.fab_label);
                             if (label != null && label.isHandleVisibilityChanges()) {
                                 label.show(animate);
@@ -671,19 +675,6 @@ public class FloatingActionMenu extends ViewGroup {
                     delay += mAnimationDelayPerItem;
                 }
             }
-
-            // handle menu button label
-            mUiHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (isOpened()) return;
-                    Label label = (Label) mMenuButton.getTag(R.id.fab_label);
-                    if (label != null && label.isHandleVisibilityChanges()) {
-                        label.show(animate);
-                    }
-                }
-            }, delay);
-
 
             mUiHandler.postDelayed(new Runnable() {
                 @Override
@@ -716,10 +707,11 @@ public class FloatingActionMenu extends ViewGroup {
             int delay = 0;
             int counter = 0;
             mIsMenuOpening = false;
+
             for (int i = 0; i < getChildCount(); i++) {
                 View child = getChildAt(i);
                 if (child instanceof FloatingActionButton
-                        && child != mMenuButton && child.getVisibility() != GONE) {
+                        && child.getVisibility() != GONE) {
                     counter++;
 
                     final FloatingActionButton fab = (FloatingActionButton) child;
@@ -728,7 +720,11 @@ public class FloatingActionMenu extends ViewGroup {
                         public void run() {
                             if (!isOpened()) return;
 
-                            fab.hide(animate);
+                            // do not hide the menu button itself
+                            if (fab != mMenuButton) {
+                                fab.hide(animate);
+                            }
+
                             Label label = (Label) fab.getTag(R.id.fab_label);
                             if (label != null && label.isHandleVisibilityChanges()) {
                                 label.hide(animate);
@@ -738,19 +734,6 @@ public class FloatingActionMenu extends ViewGroup {
                     delay += mAnimationDelayPerItem;
                 }
             }
-
-            // handle menu button label
-            mUiHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (!isOpened()) return;
-
-                    Label label = (Label) mMenuButton.getTag(R.id.fab_label);
-                    if (label != null && label.isHandleVisibilityChanges()) {
-                        label.hide(animate);
-                    }
-                }
-            }, delay);
 
             mUiHandler.postDelayed(new Runnable() {
                 @Override
