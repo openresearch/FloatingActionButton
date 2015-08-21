@@ -31,7 +31,7 @@ Watch a short **[Demo Video](https://youtu.be/XngUY3PN1IQ)** on YouTube or try i
 Add a dependency to your `build.gradle`:
 ```
 dependencies {
-    compile 'com.github.clans:fab:1.5.0'
+    compile 'com.github.clans:fab:1.5.5'
 }
 ```
 Add the `com.github.clans.fab.FloatingActionButton` to your layout XML file.
@@ -132,6 +132,7 @@ Here are all the **FloatingActionMenu**'s xml attributes with their **default va
         fab:menu_labels_colorNormal="#333333"
         fab:menu_labels_colorPressed="#444444"
         fab:menu_labels_colorRipple="#66FFFFFF"
+        fab:menu_labels_showShadow="true"
         fab:menu_labels_singleLine="false"
         fab:menu_labels_ellipsize="none"
         fab:menu_labels_maxLines="-1"

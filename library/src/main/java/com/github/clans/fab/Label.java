@@ -46,6 +46,7 @@ public class Label extends TextView {
     private Animation mShowAnimation;
     private Animation mHideAnimation;
     private boolean mUsingStyle;
+    private boolean mHandleVisibilityChanges = true;
 
     public Label(Context context) {
         super(context);
@@ -179,12 +180,14 @@ public class Label extends TextView {
 
     private void playShowAnimation() {
         if (mShowAnimation != null) {
+            mHideAnimation.cancel();
             startAnimation(mShowAnimation);
         }
     }
 
     private void playHideAnimation() {
         if (mHideAnimation != null) {
+            mShowAnimation.cancel();
             startAnimation(mHideAnimation);
         }
     }
@@ -268,9 +271,19 @@ public class Label extends TextView {
         mUsingStyle = usingStyle;
     }
 
+    void setHandleVisibilityChanges(boolean handle) {
+        mHandleVisibilityChanges = handle;
+    }
+
+    boolean isHandleVisibilityChanges() {
+        return mHandleVisibilityChanges;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (mFab == null || mFab.getOnClickListener() == null) return false;
+        if (mFab == null || mFab.getOnClickListener() == null || !mFab.isEnabled()) {
+            return super.onTouchEvent(event);
+        }
 
         int action = event.getAction();
         switch (action) {
