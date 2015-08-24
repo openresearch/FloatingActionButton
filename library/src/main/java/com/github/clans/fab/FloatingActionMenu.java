@@ -862,6 +862,11 @@ public class FloatingActionMenu extends ViewGroup {
         mIsSetClosedOnTouchOutside = close;
     }
 
+    public void setMenuButtonIcon(int resId) {
+        mIcon = getResources().getDrawable(resId);
+        mImageToggle.setImageDrawable(mIcon);
+    }
+
     public void setMenuButtonColorNormal(int color) {
         mMenuColorNormal = color;
         mMenuButton.setColorNormal(color);
