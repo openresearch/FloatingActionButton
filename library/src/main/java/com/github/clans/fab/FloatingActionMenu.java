@@ -672,7 +672,7 @@ public class FloatingActionMenu extends ViewGroup {
                             }
                         }
                     }, delay);
-                    delay += mAnimationDelayPerItem;
+                    delay += animate ? mAnimationDelayPerItem : 0;
                 }
             }
 
@@ -685,7 +685,7 @@ public class FloatingActionMenu extends ViewGroup {
                         mToggleListener.onMenuToggle(true);
                     }
                 }
-            }, ++counter * mAnimationDelayPerItem);
+            }, animate ? ++counter * mAnimationDelayPerItem : 0);
         }
     }
 
@@ -731,7 +731,7 @@ public class FloatingActionMenu extends ViewGroup {
                             }
                         }
                     }, delay);
-                    delay += mAnimationDelayPerItem;
+                    delay += animate ? mAnimationDelayPerItem : 0;
                 }
             }
 
@@ -744,7 +744,7 @@ public class FloatingActionMenu extends ViewGroup {
                         mToggleListener.onMenuToggle(false);
                     }
                 }
-            }, ++counter * mAnimationDelayPerItem);
+            }, animate ? ++counter * mAnimationDelayPerItem : 0);
         }
     }
 
